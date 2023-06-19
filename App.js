@@ -1,20 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React,{useState,UseEffect, useEffect} from 'react';
+import {View,Text,Button} from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Thank you kush bhai</Text>
-      <StatusBar style="auto" />
-    </View>
-  );n
-}
+const satva =()=>{
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const [sdata,setsdata]=useState(null);
+  const pokename='mew'
+  useEffect(() =>{
+    fetchsdata();
+  },[]
+)
+const fetchsdata=async ()=>{
+  const response=await fetch(`https://pokeapi.co/api/v2/pokemon/${pokename}`);
+  const pokedata=await response.json();
+  setsdata(pokedata);
+
+};
+
+return (
+ <View >
+  <View style={{marginTop:400}}>
+  <Button title='Click on me' onPress={fetchsdata}/>
+  </View>
+
+  {
+    sdata &&(
+      <View style={{marginTop:40}}>
+        <Text>Name:{sdata.name}</Text>
+        <Text>Name:{sdata.weight}</Text>
+      </View>
+    )
+  }
+ </View>
+
+);
+};
+export default satva;
