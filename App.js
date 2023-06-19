@@ -4,11 +4,8 @@ import {View,Text,Button} from 'react-native';
 const satva =()=>{
 
   const [sdata,setsdata]=useState(null);
-  const pokename='mew'
-  useEffect(() =>{
-    fetchsdata();
-  },[]
-)
+  const pokename='charizard'
+  
 const fetchsdata=async ()=>{
   const response=await fetch(`https://pokeapi.co/api/v2/pokemon/${pokename}`);
   const pokedata=await response.json();
@@ -26,7 +23,8 @@ return (
     sdata &&(
       <View style={{marginTop:40}}>
         <Text>Name:{sdata.name}</Text>
-        <Text>Name:{sdata.weight}</Text>
+        <Text>Weight:{sdata.weight}</Text>
+        <Text>Height:{sdata.height}</Text>
       </View>
     )
   }
